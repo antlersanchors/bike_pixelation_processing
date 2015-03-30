@@ -26,8 +26,8 @@ int resVal;
 int maxRes;
 
 void setup() {
-  size(640, 640);
-  frameRate(15);
+  size(800, 800);
+  frameRate(30);
 
   resVal = 1;
 
@@ -63,10 +63,10 @@ void setup() {
 void draw() {
 
    if ( arduino1.available() > 0) {  // If data is available,
-    resVal = arduino1.read();         // read it and store it in resVal
-//    println("resVal raw: " + resVal);
+    resVal = int(arduino1.read());         // read it and store it in resVal
+    println("resVal raw: " + resVal);
     resVal = constrain(resVal, 1, maxRes); 
-//    println("resVal mapped: " + resVal);
+    println("resVal mapped: " + resVal);
     
     cols = resVal;
     rows = resVal;
@@ -115,7 +115,7 @@ void draw() {
           rect(0, 0, cellSize, cellSize);
         popMatrix();
         
-        // delay(5);
+        delay(5);
       }
     }
   }
